@@ -520,6 +520,294 @@ const Quiz = () => {
 };
 
 /* ============================================================
+   KALKULAZIO ARIKETAK — SVG zirkuitu diagramak + urrats interaktiboak
+   ============================================================ */
+
+/* -- SVG circuit components (adapted from berezuma/electricityexercises) -- */
+const SvgEx1 = () => (
+  <svg viewBox="0 0 270 135" className="w-full max-w-xs mx-auto">
+    <polyline points="40,73 40,24 230,24 230,111 40,111 40,91" fill="none" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="22" y1="73" x2="58" y2="73" stroke="#eab308" strokeWidth="4.5"/>
+    <line x1="28" y1="91" x2="52" y2="91" stroke="#94a3b8" strokeWidth="2.5"/>
+    <text x="7" y="77" fontSize="9" fill="#ca8a04">+</text>
+    <text x="7" y="95" fontSize="9" fill="#64748b">−</text>
+    <text x="62" y="84" fontSize="11" fill="#ca8a04" fontWeight="bold">9V</text>
+    <rect x="95" y="12" width="85" height="24" rx="4" fill="#fce7f3" stroke="#ec4899" strokeWidth="2"/>
+    <text x="137" y="28" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#be185d">150Ω</text>
+    <polygon points="67,21 73,24 67,27" fill="#94a3b8"/>
+    <text x="76" y="21" fontSize="9" fill="#94a3b8">I →</text>
+  </svg>
+);
+
+const SvgEx2 = () => (
+  <svg viewBox="0 0 430 135" className="w-full max-w-sm mx-auto">
+    <polyline points="40,73 40,24 390,24 390,111 40,111 40,91" fill="none" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="22" y1="73" x2="58" y2="73" stroke="#eab308" strokeWidth="4.5"/>
+    <line x1="28" y1="91" x2="52" y2="91" stroke="#94a3b8" strokeWidth="2.5"/>
+    <text x="7" y="77" fontSize="9" fill="#ca8a04">+</text>
+    <text x="7" y="95" fontSize="9" fill="#64748b">−</text>
+    <text x="62" y="84" fontSize="11" fill="#ca8a04" fontWeight="bold">24V</text>
+    <rect x="93"  y="12" width="72" height="24" rx="4" fill="#fce7f3" stroke="#ec4899" strokeWidth="2"/>
+    <text x="129" y="28" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#be185d">R₁=5Ω</text>
+    <rect x="179" y="12" width="72" height="24" rx="4" fill="#dbeafe" stroke="#60a5fa" strokeWidth="2"/>
+    <text x="215" y="28" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#1d4ed8">R₂=7Ω</text>
+    <rect x="265" y="12" width="80" height="24" rx="4" fill="#d1fae5" stroke="#34d399" strokeWidth="2"/>
+    <text x="305" y="28" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#065f46">R₃=12Ω</text>
+    <polygon points="67,21 73,24 67,27" fill="#94a3b8"/>
+  </svg>
+);
+
+const SvgEx3 = () => (
+  <svg viewBox="0 0 295 170" className="w-full max-w-xs mx-auto">
+    <polyline points="40,88 40,28 118,28" fill="none" stroke="#475569" strokeWidth="2.5"/>
+    <polyline points="40,108 40,142 118,142" fill="none" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="22" y1="88" x2="58" y2="88" stroke="#eab308" strokeWidth="4.5"/>
+    <line x1="28" y1="108" x2="52" y2="108" stroke="#94a3b8" strokeWidth="2.5"/>
+    <text x="7" y="92" fontSize="9" fill="#ca8a04">+</text>
+    <text x="7" y="111" fontSize="9" fill="#64748b">−</text>
+    <text x="62" y="101" fontSize="11" fill="#ca8a04" fontWeight="bold">48V</text>
+    <line x1="118" y1="28" x2="118" y2="52" stroke="#475569" strokeWidth="2.5"/>
+    <rect x="105" y="52" width="26" height="54" rx="4" fill="#fce7f3" stroke="#ec4899" strokeWidth="2"/>
+    <text x="118" y="76" textAnchor="middle" fontSize="10" fontWeight="bold" fill="#be185d">R₁</text>
+    <text x="118" y="91" textAnchor="middle" fontSize="10" fill="#be185d">16Ω</text>
+    <line x1="118" y1="106" x2="118" y2="142" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="118" y1="28" x2="228" y2="28" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="118" y1="142" x2="228" y2="142" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="228" y1="28" x2="228" y2="52" stroke="#475569" strokeWidth="2.5"/>
+    <rect x="215" y="52" width="26" height="54" rx="4" fill="#dbeafe" stroke="#60a5fa" strokeWidth="2"/>
+    <text x="228" y="76" textAnchor="middle" fontSize="10" fontWeight="bold" fill="#1d4ed8">R₂</text>
+    <text x="228" y="91" textAnchor="middle" fontSize="10" fill="#1d4ed8">16Ω</text>
+    <line x1="228" y1="106" x2="228" y2="142" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="228" y1="28" x2="263" y2="28" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="228" y1="142" x2="263" y2="142" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="263" y1="28" x2="263" y2="142" stroke="#475569" strokeWidth="2.5"/>
+    <circle cx="118" cy="28" r="3.5" fill="#475569"/>
+    <circle cx="118" cy="142" r="3.5" fill="#475569"/>
+    <polygon points="68,25 74,28 68,31" fill="#94a3b8"/>
+  </svg>
+);
+
+const SvgEx4 = () => (
+  <svg viewBox="0 0 355 170" className="w-full max-w-sm mx-auto">
+    <polyline points="40,88 40,28 93,28" fill="none" stroke="#475569" strokeWidth="2.5"/>
+    <polyline points="40,108 40,142 193,142" fill="none" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="22" y1="88" x2="58" y2="88" stroke="#eab308" strokeWidth="4.5"/>
+    <line x1="28" y1="108" x2="52" y2="108" stroke="#94a3b8" strokeWidth="2.5"/>
+    <text x="7" y="92" fontSize="9" fill="#ca8a04">+</text>
+    <text x="7" y="111" fontSize="9" fill="#64748b">−</text>
+    <text x="62" y="101" fontSize="11" fill="#ca8a04" fontWeight="bold">20V</text>
+    <rect x="93" y="16" width="62" height="24" rx="4" fill="#fce7f3" stroke="#ec4899" strokeWidth="2"/>
+    <text x="124" y="32" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#be185d">R₁=6Ω</text>
+    <line x1="155" y1="28" x2="193" y2="28" stroke="#475569" strokeWidth="2.5"/>
+    <circle cx="193" cy="28" r="3.5" fill="#475569"/>
+    <circle cx="193" cy="142" r="3.5" fill="#475569"/>
+    <line x1="193" y1="28" x2="193" y2="52" stroke="#475569" strokeWidth="2.5"/>
+    <rect x="180" y="52" width="26" height="54" rx="4" fill="#dbeafe" stroke="#60a5fa" strokeWidth="2"/>
+    <text x="193" y="76" textAnchor="middle" fontSize="10" fontWeight="bold" fill="#1d4ed8">R₂</text>
+    <text x="193" y="91" textAnchor="middle" fontSize="10" fill="#1d4ed8">8Ω</text>
+    <line x1="193" y1="106" x2="193" y2="142" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="193" y1="28" x2="288" y2="28" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="193" y1="142" x2="288" y2="142" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="288" y1="28" x2="288" y2="52" stroke="#475569" strokeWidth="2.5"/>
+    <rect x="275" y="52" width="26" height="54" rx="4" fill="#d1fae5" stroke="#34d399" strokeWidth="2"/>
+    <text x="288" y="76" textAnchor="middle" fontSize="10" fontWeight="bold" fill="#065f46">R₃</text>
+    <text x="288" y="91" textAnchor="middle" fontSize="10" fill="#065f46">8Ω</text>
+    <line x1="288" y1="106" x2="288" y2="142" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="288" y1="28" x2="323" y2="28" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="288" y1="142" x2="323" y2="142" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="323" y1="28" x2="323" y2="142" stroke="#475569" strokeWidth="2.5"/>
+    <polygon points="67,25 73,28 67,31" fill="#94a3b8"/>
+  </svg>
+);
+
+const SvgEx5 = () => (
+  <svg viewBox="0 0 310 135" className="w-full max-w-xs mx-auto">
+    <polyline points="40,73 40,24 270,24 270,111 40,111 40,91" fill="none" stroke="#475569" strokeWidth="2.5"/>
+    <line x1="22" y1="73" x2="58" y2="73" stroke="#eab308" strokeWidth="4.5"/>
+    <line x1="28" y1="91" x2="52" y2="91" stroke="#94a3b8" strokeWidth="2.5"/>
+    <text x="7" y="77" fontSize="9" fill="#ca8a04">+</text>
+    <text x="7" y="95" fontSize="9" fill="#64748b">−</text>
+    <text x="62" y="84" fontSize="11" fill="#ca8a04" fontWeight="bold">20V</text>
+    <rect x="95"  y="12" width="72" height="24" rx="4" fill="#fce7f3" stroke="#ec4899" strokeWidth="2"/>
+    <text x="131" y="28" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#be185d">R₁=2Ω</text>
+    <rect x="181" y="12" width="72" height="24" rx="4" fill="#dbeafe" stroke="#60a5fa" strokeWidth="2"/>
+    <text x="217" y="28" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#1d4ed8">R₂=3Ω</text>
+    <polygon points="67,21 73,24 67,27" fill="#94a3b8"/>
+  </svg>
+);
+
+const EXERCISES = [
+  {
+    id: 1, SvgComponent: SvgEx1,
+    type: 'Ohm-en Legea', emoji: '⚡',
+    title: 'Zirkuitu sinplea',
+    desc: '9V-ko bateria bat eta 150Ω-ko erresistentzia bakar bat seriean konektatuta daude.',
+    data: [{ k: 'V', v: '9 V' }, { k: 'R', v: '150 Ω' }],
+    steps: [
+      { id: 'I',  ask: 'Kalkulatu intentsitate totala (Iₜ)',  formula: 'Iₜ = V / R',   answer: 0.06, unit: 'A',  sol: 'Iₜ = V / R = 9 / 150 = 0.06 A' },
+      { id: 'P',  ask: 'Kalkulatu potentzia (P)',             formula: 'P = V × Iₜ',  answer: 0.54, unit: 'W',  sol: 'P = V × Iₜ = 9 × 0.06 = 0.54 W' },
+    ],
+  },
+  {
+    id: 2, SvgComponent: SvgEx2,
+    type: 'Serieko Zirkuitua', emoji: '🔗',
+    title: 'Hiru erresistentzia seriean',
+    desc: '24V-ko iturriak hiru erresistentzia seriean elikatzen ditu: R₁=5Ω, R₂=7Ω, R₃=12Ω.',
+    data: [{ k: 'V', v: '24 V' }, { k: 'R₁', v: '5 Ω' }, { k: 'R₂', v: '7 Ω' }, { k: 'R₃', v: '12 Ω' }],
+    steps: [
+      { id: 'Rt', ask: 'Erresistentzia totala (Rₜ)',      formula: 'Rₜ = R₁ + R₂ + R₃',  answer: 24, unit: 'Ω', sol: 'Rₜ = 5 + 7 + 12 = 24 Ω' },
+      { id: 'I',  ask: 'Intentsitate totala (Iₜ)',         formula: 'Iₜ = V / Rₜ',          answer: 1,  unit: 'A', sol: 'Iₜ = 24 / 24 = 1 A' },
+      { id: 'V2', ask: 'Tentsioa R₂an (V_R₂)',             formula: 'V_R₂ = Iₜ × R₂',      answer: 7,  unit: 'V', sol: 'V_R₂ = 1 × 7 = 7 V' },
+    ],
+  },
+  {
+    id: 3, SvgComponent: SvgEx3,
+    type: 'Paraleloko Zirkuitua', emoji: '⑂',
+    title: 'Bi erresistentzia paraleloan',
+    desc: '48V-ko iturriari bi 16Ω erresistentzia paraleloan konektatuta daude.',
+    data: [{ k: 'V', v: '48 V' }, { k: 'R₁', v: '16 Ω' }, { k: 'R₂', v: '16 Ω' }],
+    steps: [
+      { id: 'Rt', ask: 'Erresistentzia totala (Rₜ)',           formula: '1/Rₜ = 1/R₁ + 1/R₂',  answer: 8, unit: 'Ω', sol: '1/Rₜ = 1/16 + 1/16 = 2/16 → Rₜ = 8 Ω' },
+      { id: 'It', ask: 'Intentsitate totala (Iₜ)',              formula: 'Iₜ = V / Rₜ',          answer: 6, unit: 'A', sol: 'Iₜ = 48 / 8 = 6 A' },
+      { id: 'I1', ask: 'Intentsitatea R₁etik (I_R₁)',          formula: 'I_R₁ = V / R₁',        answer: 3, unit: 'A', sol: 'I_R₁ = 48 / 16 = 3 A' },
+    ],
+  },
+  {
+    id: 4, SvgComponent: SvgEx4,
+    type: 'Zirkuitu Mistoa', emoji: '🔀',
+    title: 'Serie + Paralelo',
+    desc: '20V-ko iturriari R₁=6Ω seriean eta R₂∥R₃ (8Ω bakoitza) paraleloan konektatuta daude.',
+    data: [{ k: 'V', v: '20 V' }, { k: 'R₁', v: '6 Ω (serie)' }, { k: 'R₂', v: '8 Ω' }, { k: 'R₃', v: '8 Ω (paralelo)' }],
+    steps: [
+      { id: 'Rp', ask: 'R₂∥R₃ erresistentzia baliokidea (Rₚ)', formula: '1/Rₚ = 1/R₂ + 1/R₃',  answer: 4,  unit: 'Ω', sol: '1/Rₚ = 1/8 + 1/8 = 2/8 → Rₚ = 4 Ω' },
+      { id: 'Rt', ask: 'Erresistentzia totala (Rₜ)',             formula: 'Rₜ = R₁ + Rₚ',        answer: 10, unit: 'Ω', sol: 'Rₜ = 6 + 4 = 10 Ω' },
+      { id: 'It', ask: 'Intentsitate totala (Iₜ)',               formula: 'Iₜ = V / Rₜ',          answer: 2,  unit: 'A', sol: 'Iₜ = 20 / 10 = 2 A' },
+    ],
+  },
+  {
+    id: 5, SvgComponent: SvgEx5,
+    type: 'Potentzia', emoji: '💥',
+    title: 'Potentziaren banaketa',
+    desc: '20V-ko bateria batek R₁=2Ω eta R₂=3Ω seriean elikatzen ditu. Kalkulatu intentsitatea eta R₂ak xahutzen duen potentzia.',
+    data: [{ k: 'V', v: '20 V' }, { k: 'R₁', v: '2 Ω' }, { k: 'R₂', v: '3 Ω' }],
+    steps: [
+      { id: 'It', ask: 'Intentsitate totala (Iₜ)',   formula: 'Iₜ = V / (R₁ + R₂)', answer: 4,  unit: 'A', sol: 'Iₜ = 20 / (2+3) = 20/5 = 4 A' },
+      { id: 'P2', ask: 'Potentzia R₂an (P₂)',        formula: 'P₂ = Iₜ² × R₂',      answer: 48, unit: 'W', sol: 'P₂ = 4² × 3 = 16 × 3 = 48 W' },
+    ],
+  },
+];
+
+const ExerciseCard = ({ ex }) => {
+  const [inputs, setInputs] = useState({});
+  const [fb, setFb] = useState({});
+  const [showSol, setShowSol] = useState(false);
+
+  const check = (id, expected) => {
+    const v = parseFloat(inputs[id]);
+    if (isNaN(v)) return;
+    setFb(f => ({ ...f, [id]: Math.abs(v - expected) / expected < 0.015 ? 'ok' : 'err' }));
+  };
+
+  const Svg = ex.SvgComponent;
+
+  return (
+    <div>
+      <p className="text-slate-700 leading-relaxed mb-4">{ex.desc}</p>
+      <div className="flex flex-wrap gap-2 mb-5">
+        {ex.data.map(({ k, v }) => (
+          <span key={k} className="px-3 py-1 bg-slate-100 rounded-lg font-mono text-sm">
+            <span className="text-slate-500">{k} = </span>
+            <span className="font-bold text-slate-800">{v}</span>
+          </span>
+        ))}
+      </div>
+      <div className="bg-slate-50 rounded-xl p-3 mb-5">
+        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 text-center">Zirkuitu diagrama</p>
+        <Svg />
+      </div>
+      <div className="space-y-3">
+        {ex.steps.map((step, i) => (
+          <div key={step.id} className={`rounded-xl p-4 border transition-colors ${
+            fb[step.id] === 'ok'  ? 'bg-emerald-50 border-emerald-300' :
+            fb[step.id] === 'err' ? 'bg-rose-50 border-rose-300' :
+            'bg-white border-slate-200'
+          }`}>
+            <p className="text-sm font-semibold text-slate-800 mb-0.5">{i + 1}. {step.ask}</p>
+            <p className="text-xs font-mono text-slate-400 mb-3">{step.formula}</p>
+            <div className="flex items-center gap-2 flex-wrap">
+              <input type="number" step="any"
+                value={inputs[step.id] || ''}
+                onChange={e => setInputs(inp => ({ ...inp, [step.id]: e.target.value }))}
+                onKeyDown={e => e.key === 'Enter' && check(step.id, step.answer)}
+                placeholder="?"
+                className={`w-24 border-2 rounded-lg px-3 py-1.5 text-sm font-mono focus:outline-none transition-colors ${
+                  fb[step.id] === 'ok'  ? 'border-emerald-400 bg-emerald-50' :
+                  fb[step.id] === 'err' ? 'border-rose-400 bg-rose-50' :
+                  'border-slate-200 focus:border-amber-400'
+                }`}
+              />
+              <span className="text-slate-500 text-sm font-mono">{step.unit}</span>
+              <button onClick={() => check(step.id, step.answer)}
+                className="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-white text-xs font-bold rounded-lg transition-colors">
+                Egiaztatu
+              </button>
+              {fb[step.id] === 'ok'  && <span className="text-emerald-600 text-sm font-bold">✓ Zuzen!</span>}
+              {fb[step.id] === 'err' && <span className="text-rose-500 text-sm font-bold">✗ Saiatu berriro</span>}
+            </div>
+            {showSol && (
+              <p className="mt-3 font-mono text-sm text-emerald-700 bg-emerald-50 rounded-lg px-3 py-2">✓ {step.sol}</p>
+            )}
+          </div>
+        ))}
+      </div>
+      <button onClick={() => setShowSol(!showSol)}
+        className="mt-4 text-xs text-slate-400 hover:text-slate-600 underline transition-colors">
+        {showSol ? 'Soluzioa ezkutatu' : 'Soluzioa erakutsi'}
+      </button>
+    </div>
+  );
+};
+
+const KalkulazioAriketak = () => {
+  const [cur, setCur] = useState(0);
+  const ex = EXERCISES[cur];
+  return (
+    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+      <div className="flex items-center justify-between bg-slate-50 px-5 py-3 border-b border-slate-200">
+        <div className="flex gap-1.5">
+          {EXERCISES.map((e, i) => (
+            <button key={i} onClick={() => setCur(i)}
+              className={`w-8 h-8 rounded-full text-sm font-bold transition-colors ${
+                i === cur ? 'bg-amber-500 text-white' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100'
+              }`}>
+              {i + 1}
+            </button>
+          ))}
+        </div>
+        <span className="text-xs font-semibold px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full">{ex.type}</span>
+      </div>
+      <div className="p-6">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-2xl">{ex.emoji}</span>
+          <h3 className="font-bold text-slate-900 text-lg">{ex.title}</h3>
+        </div>
+        <ExerciseCard key={ex.id} ex={ex} />
+      </div>
+      <div className="flex justify-between px-6 py-4 border-t border-slate-100">
+        <button onClick={() => setCur(c => Math.max(0, c - 1))} disabled={cur === 0}
+          className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-30 text-slate-700 font-semibold rounded-lg text-sm transition-colors">
+          ← Aurrekoa
+        </button>
+        <button onClick={() => setCur(c => Math.min(EXERCISES.length - 1, c + 1))} disabled={cur === EXERCISES.length - 1}
+          className="px-4 py-2 bg-amber-500 hover:bg-amber-400 disabled:opacity-30 text-white font-semibold rounded-lg text-sm transition-colors">
+          Hurrengoa →
+        </button>
+      </div>
+    </div>
+  );
+};
+
+/* ============================================================
    MAIN PAGE
    ============================================================ */
 export default function ElektrizitateOinarrizkoa() {
@@ -546,9 +834,9 @@ export default function ElektrizitateOinarrizkoa() {
           </p>
           {/* Quick nav */}
           <div className="mt-8 flex flex-wrap gap-2">
-            {['#oinarriak', '#osagaiak', '#kalkulagailua', '#formulak', '#zirkuitu-motak', '#ariketak'].map((href, i) => (
+            {['#oinarriak', '#osagaiak', '#kalkulagailua', '#formulak', '#zirkuitu-motak', '#kalkulazio-ariketak', '#ariketak'].map((href, i) => (
               <a key={i} href={href} className="text-xs font-semibold bg-white/15 hover:bg-white/25 text-white px-3 py-1.5 rounded-full transition-colors">
-                {['Oinarriak', 'Osagaiak', 'Kalkulagailua', 'Formulak', 'Zirkuitu Motak', 'Ariketak'][i]}
+                {['Oinarriak', 'Osagaiak', 'Kalkulagailua', 'Formulak', 'Zirkuitu Motak', 'Ariketak', 'Galderak'][i]}
               </a>
             ))}
           </div>
@@ -635,10 +923,18 @@ export default function ElektrizitateOinarrizkoa() {
           <ZirkuituInfo />
         </Section>
 
-        {/* 6. ARIKETAK */}
-        <Section id="ariketak" icon={<CheckCircle className="w-5 h-5" />} title="Ariketak — Proba ezazu!" color="bg-emerald-600">
+        {/* 6. KALKULAZIO ARIKETAK */}
+        <Section id="kalkulazio-ariketak" icon={<Calculator className="w-5 h-5" />} title="Kalkulazio Ariketak" color="bg-amber-600">
           <p className="text-slate-600 mb-6">
-            {QUIZ.length} galdera kalkuluak eta kontzeptuak probatzeko. Denak erantzun eta egiaztatu.
+            5 ariketa maila ezberdineko. Sartu zure erantzuna eta "Egiaztatu" sakatu — ariketa batetik bestera nabigatu goiko zenbakiekin.
+          </p>
+          <KalkulazioAriketak />
+        </Section>
+
+        {/* 7. GALDERA TEORIKOAK */}
+        <Section id="ariketak" icon={<CheckCircle className="w-5 h-5" />} title="Galdera Teorikoak" color="bg-emerald-600">
+          <p className="text-slate-600 mb-6">
+            {QUIZ.length} galdera kontzeptuak eta kalkuluak probatzeko. Denak erantzun eta egiaztatu.
           </p>
           <Quiz />
         </Section>
